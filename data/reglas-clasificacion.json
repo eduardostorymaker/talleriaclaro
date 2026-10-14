@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "configuracion": {
+    "peso_asunto": 3,
+    "peso_cuerpo": 1,
+    "puntaje_minimo": 2,
+    "prioridad_predeterminada": "media"
+  },
+  "categorias": [
+    {
+      "id": "reuniones",
+      "etiqueta": "Reuniones y agenda",
+      "descripcion": "Solicitudes para coordinar reuniones, citas, llamadas o disponibilidad.",
+      "palabras_clave": ["reunión", "agendar", "agenda", "disponibilidad", "videollamada", "cita", "calendario"]
+    },
+    {
+      "id": "facturacion",
+      "etiqueta": "Facturación y pagos",
+      "descripcion": "Facturas, cobros, pagos, vencimientos, reembolsos o constancias financieras.",
+      "palabras_clave": ["factura", "pago", "cobro", "vencimiento", "tesorería", "reembolso", "constancia"]
+    },
+    {
+      "id": "soporte_tecnico",
+      "etiqueta": "Soporte técnico",
+      "descripcion": "Problemas de acceso, errores de sistemas, contraseñas o solicitudes técnicas.",
+      "palabras_clave": ["error", "no puedo acceder", "sin acceso", "iniciar sesión", "contraseña", "soporte", "sistema", "portal"]
+    },
+    {
+      "id": "seguridad",
+      "etiqueta": "Seguridad y fraude",
+      "descripcion": "Mensajes sospechosos, phishing, solicitudes de credenciales o alertas de fraude.",
+      "palabras_clave": ["actividad inusual", "verifica tu cuenta", "credenciales", "bloqueada", "bloqueo", "phishing", "enlace", "contraseña"]
+    },
+    {
+      "id": "academico",
+      "etiqueta": "Académico",
+      "descripcion": "Cursos, tareas, profesores, evaluaciones, matrículas y entregas académicas.",
+      "palabras_clave": ["curso", "tarea", "profesor", "profesora", "entrega final", "bibliografía", "rúbrica", "matrícula"]
+    },
+    {
+      "id": "promociones",
+      "etiqueta": "Promociones",
+      "descripcion": "Publicidad, boletines comerciales, descuentos, ofertas y cupones.",
+      "palabras_clave": ["descuento", "oferta", "promoción", "cupón", "boletín", "cancelar la suscripción", "productos seleccionados"]
+    }
+  ],
+  "prioridades": [
+    {
+      "id": "alta",
+      "etiqueta": "Alta",
+      "descripcion": "Requiere atención inmediata o durante el mismo día por riesgo, bloqueo o vencimiento.",
+      "palabras_clave": ["urgente", "inmediatamente", "hoy", "vencimiento", "suspensión", "bloqueada", "bloqueo", "actividad inusual"]
+    },
+    {
+      "id": "baja",
+      "etiqueta": "Baja",
+      "descripcion": "Contenido informativo, comercial o sin una acción próxima necesaria.",
+      "palabras_clave": ["oferta", "descuento", "promoción", "boletín", "sin apuro", "cuando puedas"]
+    },
+    {
+      "id": "media",
+      "etiqueta": "Media",
+      "descripcion": "Requiere seguimiento, pero no presenta una urgencia inmediata.",
+      "palabras_clave": ["esta semana", "viernes", "confirmación", "revisar", "seguimiento", "plazo"]
+    }
+  ]
+}

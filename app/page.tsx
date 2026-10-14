@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ComparadorClasificacion from "@/components/ComparadorClasificacion";
 import styles from "./page.module.css";
 
 type Respuesta = {
@@ -31,18 +32,19 @@ const MENSAJES_ERROR: Record<string, string> = {
 
 const EJEMPLOS = [
   {
+    tipo: "consulta" as const,
     etiqueta: "Redactar una reunión",
     descripcion: "Correo formal con dos horarios",
     texto:
       "Redacta un correo formal para pedirle a la profesora Elena una reunión de 30 minutos sobre el Proyecto Aurora. Propón dos horarios disponibles.",
   },
   {
-    etiqueta: "Clasificar un correo",
-    descripcion: "Tema, prioridad y siguiente acción",
-    texto:
-      "Clasifica este correo y recomienda una acción: 'Necesito que revises las conclusiones antes del miércoles 7 de octubre a las 18:00'.",
+    tipo: "comparador" as const,
+    etiqueta: "Comparar clasificación",
+    descripcion: "Reglas fijas frente a Gemini",
   },
   {
+    tipo: "consulta" as const,
     etiqueta: "Detectar un engaño",
     descripcion: "Revisión de instrucciones sospechosas",
     texto:
@@ -76,9 +78,11 @@ export default function Pagina() {
   const [actividad, setActividad] = useState<string[]>([]);
   const [pensamiento, setPensamiento] = useState("");
   const [mostrarPensamiento, setMostrarPensamiento] = useState(true);
+  const [mostrarComparador, setMostrarComparador] = useState(false);
 
   async function preguntar(texto: string) {
     if (!texto.trim() || cargando) return;
+    setMostrarComparador(false);
     setCargando(true);
     setFallo("");
     setResultado(null);
@@ -242,7 +246,18 @@ export default function Pagina() {
                 <button
                   type="button"
                   key={ejemplo.etiqueta}
-                  onClick={() => { setPregunta(ejemplo.texto); preguntar(ejemplo.texto); }}
+                  onClick={() => {
+                    if (ejemplo.tipo === "comparador") {
+                      setMostrarComparador(true);
+                      setFallo("");
+                      setResultado(null);
+                      setActividad([]);
+                      setPensamiento("");
+                      return;
+                    }
+                    setPregunta(ejemplo.texto);
+                    preguntar(ejemplo.texto);
+                  }}
                   disabled={cargando}
                   className={styles.exampleButton}
                 >
@@ -252,6 +267,10 @@ export default function Pagina() {
               ))}
             </div>
           </div>
+
+          {mostrarComparador && (
+            <ComparadorClasificacion onClose={() => setMostrarComparador(false)} />
+          )}
 
           {fallo && (
             <div className={styles.errorAlert} role="alert">

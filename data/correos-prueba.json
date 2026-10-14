@@ -1,0 +1,59 @@
+[
+  {
+    "id": "reunion-formal",
+    "formato": "Correo formal",
+    "remitente": "elena.rojas@universidad.edu",
+    "asunto": "Solicitud de reunión sobre el Proyecto Aurora",
+    "fecha": "2026-10-12T09:15:00-05:00",
+    "cuerpo": "Buenos días,\n\nMe gustaría agendar una reunión de 30 minutos para revisar los avances del Proyecto Aurora. Tengo disponibilidad el martes entre las 10:00 y las 12:00, o el jueves después de las 15:00.\n\nQuedo atenta a su confirmación.\n\nSaludos cordiales,\nElena Rojas"
+  },
+  {
+    "id": "factura-reenviada",
+    "formato": "Mensaje reenviado",
+    "remitente": "tesoreria@proveedor.pe",
+    "asunto": "RV: Factura F-2048 pendiente de pago",
+    "fecha": "2026-10-13T08:40:00-05:00",
+    "cuerpo": "---------- Mensaje reenviado ----------\nDe: Tesorería Proveedor SAC\nAsunto: Segundo aviso\n\nLa factura F-2048 continúa pendiente. El vencimiento es hoy a las 17:00. Para evitar la suspensión del servicio, por favor confirmar el pago o enviar la constancia."
+  },
+  {
+    "id": "soporte-breve",
+    "formato": "Mensaje breve",
+    "remitente": "maria.gomez@empresa.com",
+    "asunto": "No puedo acceder al portal",
+    "fecha": "2026-10-13T10:05:00-05:00",
+    "cuerpo": "Hola, el sistema muestra el error 403 cuando intento iniciar sesión. Ya restablecí mi contraseña, pero sigo sin acceso. ¿Soporte puede revisarlo hoy?"
+  },
+  {
+    "id": "seguridad-sospechoso",
+    "formato": "Alerta sospechosa",
+    "remitente": "verificacion@cuenta-segura.example",
+    "asunto": "URGENTE: verifica tu cuenta para evitar el bloqueo",
+    "fecha": "2026-10-13T11:22:00-05:00",
+    "cuerpo": "Detectamos actividad inusual. Abre este enlace inmediatamente, ingresa tus credenciales y confirma tu contraseña. Si no completas la verificación hoy, tu cuenta será bloqueada."
+  },
+  {
+    "id": "academico-hilo",
+    "formato": "Respuesta en hilo",
+    "remitente": "profesor.vargas@instituto.edu",
+    "asunto": "RE: Entrega final del curso",
+    "fecha": "2026-10-11T18:30:00-05:00",
+    "cuerpo": "Hola, Andrea:\n\nConfirmo que recibí tu tarea. La entrega final del curso mantiene el plazo del viernes. Recuerda adjuntar la bibliografía y la rúbrica firmada.\n\n> El 10 oct. Andrea escribió:\n> Profesor, ¿podría confirmar la fecha de entrega?"
+  },
+  {
+    "id": "promocion-boletin",
+    "formato": "Boletín comercial",
+    "remitente": "novedades@tienda.example",
+    "asunto": "Solo por hoy: 35 % de descuento",
+    "fecha": "2026-10-13T06:00:00-05:00",
+    "cuerpo": "OFERTA ESPECIAL\n\nUsa el cupón OCTUBRE35 y obtén un descuento en productos seleccionados. Promoción válida hasta medianoche. Puedes cancelar la suscripción desde el pie de este boletín."
+  },
+  {
+    "id": "objeto-perdido",
+    "formato": "Caso fuera de reglas",
+    "remitente": "recepcion@edificio.example",
+    "asunto": "Encontré una libreta azul",
+    "fecha": "2026-10-13T12:10:00-05:00",
+    "cuerpo": "Hola, ayer quedó una libreta azul en la recepción del edificio. Tiene una cinta verde y varias notas escritas a mano. Si conocen a la persona dueña, avísenle que está guardada en portería. Gracias.",
+    "caso_control": true
+  }
+]
