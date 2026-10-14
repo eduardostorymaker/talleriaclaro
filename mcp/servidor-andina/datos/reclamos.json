@@ -1,0 +1,7 @@
+[
+  {"id": "R-1001", "estado": "En evaluación", "area": "Siniestros", "fecha_presentacion": "2026-09-25", "ultima_actualizacion": "2026-09-26", "siguiente_paso": "Inspección del vehículo"},
+  {"id": "R-1002", "estado": "Devolución en proceso", "area": "Cobranzas", "fecha_presentacion": "2026-09-24", "ultima_actualizacion": "2026-09-28", "siguiente_paso": "Abono al medio de pago"},
+  {"id": "R-1003", "estado": "Escalado", "area": "Siniestros", "fecha_presentacion": "2026-09-28", "ultima_actualizacion": "2026-09-28", "siguiente_paso": "Revisión del médico auditor"},
+  {"id": "R-1004", "estado": "Rechazado", "area": "Siniestros", "fecha_presentacion": "2026-09-22", "ultima_actualizacion": "2026-09-27", "siguiente_paso": "Cliente puede apelar con informe técnico"},
+  {"id": "R-1005", "estado": "Asignado a Legal", "area": "Legal", "fecha_presentacion": "2026-09-08", "ultima_actualizacion": "2026-09-29", "siguiente_paso": "Respuesta formal"}
+]

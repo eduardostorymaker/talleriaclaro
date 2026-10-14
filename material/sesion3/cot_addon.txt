@@ -1,0 +1,10 @@
+
+<razonamiento_previo>
+Antes de responder, razona dentro de <razonamiento> ... </razonamiento>:
+1. Calcula dias_habiles listando las semanas: cuenta solo lunes a viernes después de fecha_presentacion hasta fecha_hoy.
+2. Compara dias_habiles con el plazo: "vencido" solo si es MAYOR que 15.
+3. Revisa cada criterio de severidad (critica, alta, media, baja) y quédate con la más alta que aplique.
+4. Recién entonces escribe el JSON final, después de </razonamiento>.
+</razonamiento_previo>
+
+Formato de tu respuesta completa: primero el bloque <razonamiento>, y después, en una línea nueva, el objeto JSON (sin bloque de código). El JSON es lo único que leerá el sistema.

@@ -1,0 +1,11 @@
+{
+  "name": "servidor-andina-mcp",
+  "version": "1.0.0",
+  "description": "Servidor MCP del caso Aseguradora Andina: políticas como recurso/herramienta y estado de reclamos (datos de ejemplo).",
+  "type": "module",
+  "scripts": { "start": "node server.mjs", "probar": "node probar.mjs" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  }
+}

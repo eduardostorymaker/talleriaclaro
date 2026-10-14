@@ -1,0 +1,22 @@
+{
+  "descripcion": "Glosario del asistente de correo: agrega términos relacionados para recuperar las guías y antecedentes adecuados.",
+  "expansiones": {
+    "cita": ["reunión", "horario", "disponibilidad"],
+    "juntarnos": ["reunión", "horario", "disponibilidad"],
+    "reunión": ["horario", "disponibilidad", "confirmación"],
+    "urgente": ["prioridad", "plazo", "seguridad"],
+    "importancia": ["prioridad", "clasificación", "acción"],
+    "contestar": ["respuesta", "borrador", "correo"],
+    "responder": ["respuesta", "borrador", "correo"],
+    "redacta": ["borrador", "estructura", "asunto", "tono"],
+    "redactar": ["borrador", "estructura", "asunto", "tono"],
+    "resumir": ["resumen", "propósito", "acción", "fecha"],
+    "resumen": ["propósito", "acción", "fecha", "compromiso"],
+    "sospechoso": ["seguridad", "enlace", "remitente", "credenciales"],
+    "phishing": ["seguridad", "enlace", "remitente", "credenciales"],
+    "contraseña": ["seguridad", "privacidad", "credenciales"],
+    "hoy": ["prioridad", "urgente", "24 horas", "mismo día"],
+    "seguimiento": ["mensaje anterior", "acción pendiente", "plazo"],
+    "extensión": ["ampliación", "plazo", "entrega"]
+  }
+}

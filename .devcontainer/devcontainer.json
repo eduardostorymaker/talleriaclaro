@@ -1,0 +1,17 @@
+{
+  "name": "Taller IA Generativa",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" }
+  },
+  "postCreateCommand": "npm install && (cd mcp/servidor-andina && npm install) && npm install -g @google/gemini-cli",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": { "label": "Plataforma (npm run dev)", "onAutoForward": "notify" }
+  },
+  "secrets": {
+    "GEMINI_API_KEY": {
+      "description": "Clave de API que le entrega el instructor (tiene saldo y tiempo limitados). No la escriba en ningún archivo."
+    }
+  }
+}

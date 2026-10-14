@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "andina": {
+      "command": "node",
+      "args": [
+        "mcp/servidor-andina/server.mjs"
+      ]
+    }
+  }
+}

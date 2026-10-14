@@ -1,0 +1,76 @@
+// app/api/responder/route.ts  (Next.js App Router, desplegado en Vercel)
+// Pregunta -> recuperar fragmentos -> llamar a Claude con los fragmentos como contexto -> respuesta con fuentes.
+// La clave ANTHROPIC_API_KEY vive solo en variables de entorno del servidor.
+import Anthropic from "@anthropic-ai/sdk";
+import { SYSTEM } from "@/prompts/responder.system";
+import { buscar, expandir, formatear } from "@/lib/retrieval";
+
+const client = new Anthropic(); // lee ANTHROPIC_API_KEY del entorno
+
+const MODEL = "claude-haiku-4-5-20251001"; // se cambia según su matriz de decisión de la Sesión 3
+const MAX_INPUT_CHARS = 1000;
+const MAX_TOKENS = 500;
+const K = 3; // fragmentos que entran como contexto: la perilla que decide costo y precisión
+
+// Esquema de salida como herramienta (misma técnica que /api/triage de la Sesión 3).
+const RESPUESTA_TOOL: Anthropic.Tool = {
+  name: "registrar_respuesta",
+  description: "Registra la respuesta basada en los documentos.",
+  input_schema: {
+    type: "object",
+    properties: {
+      respuesta: { type: "string", maxLength: 600 },
+      fuentes: { type: "array", items: { type: "string" } },
+      suficiente_contexto: { type: "boolean" },
+      alerta_inyeccion: { type: "boolean" },
+    },
+    required: ["respuesta", "fuentes", "suficiente_contexto", "alerta_inyeccion"],
+  },
+};
+
+// Rate limit ingenuo en memoria (válido para el taller; en producción use un almacén compartido).
+const hits = new Map<string, number[]>();
+function limitado(ip: string, max = 10, ventanaMs = 60_000) {
+  const ahora = Date.now();
+  const recientes = (hits.get(ip) ?? []).filter((t) => ahora - t < ventanaMs);
+  recientes.push(ahora);
+  hits.set(ip, recientes);
+  return recientes.length > max;
+}
+
+export async function POST(req: Request) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "local";
+  if (limitado(ip)) return Response.json({ error: "rate_limit" }, { status: 429 });
+
+  const { pregunta } = await req.json().catch(() => ({}));
+  if (typeof pregunta !== "string" || !pregunta.trim() || pregunta.length > MAX_INPUT_CHARS)
+    return Response.json({ error: "input_invalido" }, { status: 400 });
+
+  // 1. Recuperar: el CÓDIGO decide qué entra al contexto (nunca el usuario). Los documentos obsoletos se excluyen aquí.
+  const encontrados = buscar(expandir(pregunta), K);
+  const contexto = formatear(encontrados);
+
+  // 2. Responder con ese contexto.
+  const msg = await client.messages.create({
+    model: MODEL,
+    max_tokens: MAX_TOKENS,
+    system: SYSTEM,
+    tools: [RESPUESTA_TOOL],
+    tool_choice: { type: "tool", name: "registrar_respuesta" },
+    messages: [{ role: "user", content: `${contexto}\n<pregunta>\n${pregunta}\n</pregunta>` }],
+  });
+
+  // Registro de costo y de qué contexto entró: sin esto no se puede auditar ni optimizar.
+  console.log(
+    JSON.stringify({
+      evento: "responder",
+      in: msg.usage.input_tokens,
+      out: msg.usage.output_tokens,
+      fragmentos: encontrados.map((r) => `${r.fragmento.doc}/${r.fragmento.titulo}`),
+    }),
+  );
+
+  const bloque = msg.content.find((b) => b.type === "tool_use");
+  if (!bloque || bloque.type !== "tool_use") return Response.json({ error: "salida_invalida" }, { status: 502 });
+  return Response.json({ ...(bloque.input as object), contexto_usado: encontrados.map((r) => r.fragmento.doc) });
+}

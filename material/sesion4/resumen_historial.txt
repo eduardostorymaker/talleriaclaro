@@ -1,0 +1,5 @@
+Resume la conversación para que otro asistente pueda continuarla sin leer el historial completo. Conserva, en este orden:
+1. Datos fijos mencionados por el cliente (fechas, montos, número de póliza si se dio, tipo de seguro).
+2. Qué se preguntó y qué se respondió, con las fuentes citadas (ids de documentos).
+3. Lo que quedó pendiente.
+Descarta saludos, repeticiones y cortesías. Máximo 120 palabras. No agregues información que no esté en la conversación.
